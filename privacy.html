@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy - Label Mate</title>
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --surface: #141414;
+      --border: #222;
+      --text: #e8e8e8;
+      --text-muted: #888;
+      --accent: #ff6b35;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+    nav {
+      padding: 1rem 2rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .nav-brand { font-size: 1.25rem; font-weight: 700; }
+    .nav-brand a { color: var(--text); text-decoration: none; }
+    .content {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 3rem 2rem 6rem;
+    }
+    h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+    }
+    .updated {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 2.5rem;
+    }
+    h2 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-top: 2.5rem;
+      margin-bottom: 0.75rem;
+    }
+    h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-top: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+    p, li { color: var(--text-muted); font-size: 0.95rem; }
+    p { margin-bottom: 1rem; }
+    ul { padding-left: 1.5rem; margin-bottom: 1rem; }
+    li { margin-bottom: 0.35rem; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      font-size: 0.85rem;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 0.6rem 0.75rem;
+      text-align: left;
+      color: var(--text-muted);
+    }
+    th { color: var(--text); font-weight: 600; background: var(--surface); }
+    strong { color: var(--text); }
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+    footer a { color: var(--text-muted); margin: 0 1rem; }
+    @media (max-width: 600px) {
+      .content { padding: 2rem 1.25rem 4rem; }
+      table { font-size: 0.75rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand"><a href="index.html">Label Mate</a></div>
+</nav>
+
+<div class="content">
+  <h1>Privacy Policy</h1>
+  <p class="updated">Last updated: April 8, 2026</p>
+
+  <p>Label Mate ("the app") is developed by Joey Liechty ("we", "us"). This policy describes what data the app collects, how it is used, and your choices.</p>
+
+  <h2>Summary</h2>
+  <p>Label Mate is designed to work primarily on-device. We do not create user accounts, do not collect personal information, and do not use analytics or advertising frameworks. The app sends limited data to cloud services only when needed to identify records and fetch metadata.</p>
+
+  <h2>Data Collected</h2>
+
+  <h3>Data We Do Not Collect</h3>
+  <ul>
+    <li>No names, email addresses, or contact information</li>
+    <li>No location data</li>
+    <li>No device identifiers or advertising IDs</li>
+    <li>No analytics, crash reports, or usage telemetry</li>
+    <li>No browsing history or search history stored server-side</li>
+  </ul>
+
+  <h3>On-Device Data</h3>
+  <p>The following data is stored only on your device and is never transmitted:</p>
+  <ul>
+    <li><strong>App preferences</strong>: settings, toggles, and UI state (stored in UserDefaults)</li>
+    <li><strong>Scan history</strong>: your last 25 scans (stored in UserDefaults)</li>
+    <li><strong>Prepare list</strong>: tracks you save for later (stored in UserDefaults)</li>
+    <li><strong>Scan counter and trial status</strong>: daily scan count and free trial start date (stored in Keychain)</li>
+    <li><strong>Catalog database</strong>: a local index of catalog numbers for offline record identification (stored as a SQLite file)</li>
+    <li><strong>Cached metadata</strong>: cloud API responses cached locally for up to 30 days to reduce network requests</li>
+  </ul>
+
+  <h3>Data Sent to Our Cloud Service</h3>
+  <p>When the app identifies a record, it sends <strong>catalog numbers, artist names, and track titles</strong> to our Cloud Run API to fetch metadata (tracklists, credits, YouTube video links). These are music industry identifiers, not personal data. No user identifier is attached to these requests.</p>
+  <p><strong>API endpoint</strong>: hosted on Google Cloud Run (us-central1)</p>
+
+  <h3>Data Sent to Google Cloud Vision (LP Mode Only)</h3>
+  <p>When you use LP mode (textless album cover recognition), the app sends a <strong>photograph of the album cover</strong> to Google Cloud Vision via our proxy server for reverse image matching and text detection. Images are processed by Google and are subject to <a href="https://cloud.google.com/terms/cloud-privacy-notice">Google Cloud's Privacy Policy</a>. We do not store these images on our servers.</p>
+  <p>LP mode is optional. If you do not use LP mode, no images are sent to any cloud service.</p>
+
+  <h3>Data Sent to Discogs (Pricing)</h3>
+  <p>When pricing information is displayed, the app fetches marketplace data from Discogs via our proxy server. Only the release ID is sent. No personal data is transmitted. Pricing data is cached on-device for 24 hours per Discogs API terms. Discogs data is subject to the <a href="https://www.discogs.com/settings/privacy">Discogs Privacy Policy</a>.</p>
+
+  <h3>Optional Crowdsource Contributions</h3>
+  <p>If you enable "Help improve the database" in Settings (enabled by default), the app may send the following <strong>anonymous</strong> data to help improve results for all users:</p>
+  <ul>
+    <li><strong>Barcode mappings</strong>: barcode number, catalog number, and master release ID</li>
+    <li><strong>YouTube video matches</strong>: master release ID, track title, and YouTube video ID</li>
+  </ul>
+  <p>No user identifier, device identifier, or personal data is included in these reports. You can disable this at any time in Settings.</p>
+
+  <h2>Camera and Photo Library</h2>
+  <ul>
+    <li><strong>Camera</strong>: used to scan record labels and barcodes. In LP mode, images are sent to Google Cloud Vision as described above. In all other modes, camera frames are processed entirely on-device using Apple's Vision framework and are never transmitted.</li>
+    <li><strong>Photo library</strong>: used only in batch mode to import Live Photos for multi-frame scanning. Photos are processed on-device and are never uploaded.</li>
+  </ul>
+
+  <h2>Apple Music</h2>
+  <p>The app uses Apple's MusicKit framework to search for and play music. Your Apple Music subscription status and playback are handled entirely by Apple. We do not access your Apple Music listening history or library.</p>
+
+  <h2>Subscriptions</h2>
+  <p>Subscriptions are processed by Apple through the App Store. We do not receive or store your payment information. Subscription status is verified on-device using StoreKit 2.</p>
+
+  <h2>Data Retention</h2>
+  <ul>
+    <li><strong>On-device data</strong>: persists until you delete the app or clear caches in Settings.</li>
+    <li><strong>Cloud API</strong>: we do not log or store API requests beyond standard Cloud Run request logging (retained for 30 days by Google Cloud for operational purposes).</li>
+    <li><strong>Crowdsource data</strong>: anonymous barcode and video mappings are stored indefinitely to improve the database. Because no user identifier is attached, we cannot associate this data with you or delete specific contributions.</li>
+  </ul>
+
+  <h2>Children's Privacy</h2>
+  <p>Label Mate is not directed at children under 13. We do not knowingly collect data from children.</p>
+
+  <h2>Your Rights</h2>
+  <p>Since we do not collect personal data or maintain user accounts, there is no personal data to access, correct, or delete. You can:</p>
+  <ul>
+    <li><strong>Disable crowdsource contributions</strong> at any time in Settings</li>
+    <li><strong>Avoid LP mode</strong> to prevent any image uploads</li>
+    <li><strong>Clear all caches</strong> in Settings to remove locally stored metadata</li>
+    <li><strong>Delete the app</strong> to remove all on-device data</li>
+  </ul>
+  <p>For users in the EU/EEA, UK, or California: because we do not collect personal data as defined by GDPR or CCPA, these regulations' data subject rights (access, deletion, portability) do not apply. If you believe we have inadvertently collected personal data, contact us and we will investigate.</p>
+
+  <h2>Third-Party Services</h2>
+  <table>
+    <thead>
+      <tr><th>Service</th><th>Purpose</th><th>Data Sent</th><th>Privacy Policy</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Google Cloud Run</td><td>API proxy, metadata</td><td>Catalog numbers, artist/title queries</td><td><a href="https://cloud.google.com/terms/cloud-privacy-notice">Google Cloud</a></td></tr>
+      <tr><td>Google Cloud Vision</td><td>Album cover recognition (LP mode)</td><td>Album cover photograph</td><td><a href="https://cloud.google.com/terms/cloud-privacy-notice">Google Cloud</a></td></tr>
+      <tr><td>Discogs</td><td>Marketplace pricing</td><td>Release ID</td><td><a href="https://www.discogs.com/settings/privacy">Discogs</a></td></tr>
+      <tr><td>Apple MusicKit</td><td>Music search and playback</td><td>Search queries (handled by Apple)</td><td><a href="https://www.apple.com/privacy/">Apple</a></td></tr>
+      <tr><td>Apple StoreKit</td><td>Subscriptions</td><td>Payment (handled by Apple)</td><td><a href="https://www.apple.com/privacy/">Apple</a></td></tr>
+    </tbody>
+  </table>
+
+  <h2>Changes to This Policy</h2>
+  <p>We may update this policy from time to time. The "Last updated" date at the top will reflect the most recent revision. Continued use of the app after changes constitutes acceptance of the updated policy.</p>
+
+  <h2>Contact</h2>
+  <p>If you have questions about this privacy policy, contact us at:<br><strong>Email</strong>: <a href="mailto:joeyliechty@gmail.com">joeyliechty@gmail.com</a></p>
+</div>
+
+<footer>
+  <a href="index.html">Home</a>
+  <a href="terms.html">Terms of Service</a>
+  <a href="mailto:joeyliechty@gmail.com">Contact</a>
+</footer>
+
+</body>
+</html>

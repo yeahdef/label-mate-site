@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Label Mate - Scan Vinyl, Play Music</title>
+  <meta name="description" content="Point your phone at a record label and hear the music instantly. Label Mate identifies vinyl records via OCR and plays them through Apple Music.">
+  <meta property="og:title" content="Label Mate - Scan Vinyl, Play Music">
+  <meta property="og:description" content="Point your phone at a record label and hear the music instantly. Made for DJs, collectors, and crate diggers.">
+  <meta property="og:type" content="website">
+  <meta name="apple-itunes-app" content="app-id=6759539466">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --surface: #141414;
+      --border: #222;
+      --text: #e8e8e8;
+      --text-muted: #888;
+      --accent: #ff6b35;
+      --accent-glow: rgba(255, 107, 53, 0.15);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Nav */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 1rem 2rem;
+      background: rgba(10, 10, 10, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-brand {
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      margin-left: 2rem;
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    /* Hero */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 6rem 2rem 4rem;
+      background:
+        radial-gradient(ellipse at 50% 0%, var(--accent-glow) 0%, transparent 60%),
+        var(--bg);
+    }
+
+    .hero-icon {
+      width: 120px;
+      height: 120px;
+      border-radius: 26px;
+      margin-bottom: 2rem;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 span { color: var(--accent); }
+
+    .hero p {
+      font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+      color: var(--text-muted);
+      max-width: 600px;
+      margin-bottom: 2.5rem;
+    }
+
+    .cta-group {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.9rem 2rem;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .cta:hover { transform: translateY(-2px); }
+
+    .cta-primary {
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 4px 20px rgba(255, 107, 53, 0.3);
+    }
+
+    .cta-primary:hover {
+      box-shadow: 0 6px 28px rgba(255, 107, 53, 0.45);
+    }
+
+    .cta-secondary {
+      background: var(--surface);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    /* Sections */
+    section {
+      padding: 6rem 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+
+    section h2 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+
+    section > p {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      max-width: 650px;
+      margin-bottom: 3rem;
+    }
+
+    /* Feature grid */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .feature-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      transition: border-color 0.2s;
+    }
+
+    .feature-card:hover { border-color: #333; }
+
+    .feature-icon {
+      font-size: 1.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .feature-card h3 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .feature-card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    /* Modes */
+    .modes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+    }
+
+    .mode-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+    }
+
+    .mode-card h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+    }
+
+    .mode-card p {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    .mode-card .badge {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      background: var(--accent-glow);
+      color: var(--accent);
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      margin-left: 0.5rem;
+      vertical-align: middle;
+    }
+
+    /* Pricing */
+    .pricing-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      max-width: 700px;
+    }
+
+    .pricing-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2.5rem 2rem;
+    }
+
+    .pricing-card.featured {
+      border-color: var(--accent);
+      box-shadow: 0 0 40px var(--accent-glow);
+    }
+
+    .pricing-card h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .pricing-card .price {
+      font-size: 2.5rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+
+    .pricing-card .price span {
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--text-muted);
+    }
+
+    .pricing-card ul {
+      list-style: none;
+      margin-top: 1.5rem;
+    }
+
+    .pricing-card li {
+      padding: 0.4rem 0;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .pricing-card li::before {
+      content: "\2713 ";
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 3rem 2rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    footer a {
+      color: var(--text-muted);
+      text-decoration: none;
+      margin: 0 1rem;
+      transition: color 0.2s;
+    }
+
+    footer a:hover { color: var(--text); }
+
+    footer .footer-links { margin-bottom: 1rem; }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      nav { padding: 0.75rem 1rem; }
+      .nav-links a { margin-left: 1rem; font-size: 0.8rem; }
+      section { padding: 4rem 1.25rem; }
+      .hero { padding: 5rem 1.25rem 3rem; }
+      .hero-icon { width: 90px; height: 90px; border-radius: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">Label Mate</div>
+  <div class="nav-links">
+    <a href="#features">Features</a>
+    <a href="#modes">Modes</a>
+    <a href="#pricing">Pricing</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <img src="icon.png" alt="Label Mate app icon" class="hero-icon">
+  <h1>Scan vinyl.<br><span>Hear the music.</span></h1>
+  <p>Point your phone at a record label and Label Mate identifies the track and plays it instantly through Apple Music. Made for DJs, collectors, and crate diggers.</p>
+  <div class="cta-group">
+    <a href="https://apps.apple.com/app/id6759539466" class="cta cta-primary">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+      Download on the App Store
+    </a>
+    <a href="#features" class="cta cta-secondary">Learn more</a>
+  </div>
+</div>
+
+<section id="features">
+  <div class="section-label">Features</div>
+  <h2>Everything you need at the crate</h2>
+  <p>Label Mate reads text from record labels using on-device OCR and matches against a catalog of 7.5 million releases — no internet required for identification.</p>
+  <div class="features">
+    <div class="feature-card">
+      <div class="feature-icon">&#127911;</div>
+      <h3>Instant Playback</h3>
+      <p>Hear the record within seconds via Apple Music. Falls back to YouTube previews when a match isn't on Apple Music.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">&#128269;</div>
+      <h3>7.5M+ Offline Catalog</h3>
+      <p>On-device SQLite index of catalog numbers covers most commercially released records. No network needed for identification.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">&#127926;</div>
+      <h3>DJ Tools</h3>
+      <p>Key detection with Camelot codes, BPM analysis, waveform visualization, pitch fader, looper, and tap BPM.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">&#128178;</div>
+      <h3>Discogs Pricing</h3>
+      <p>See marketplace pricing, community stats, and condition breakdowns. Multi-currency support included.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">&#128247;</div>
+      <h3>Multiple Scan Modes</h3>
+      <p>Auto, manual, batch, spine scanning, and more. There's a mode for every situation — from quick crate digs to cataloging collections.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">&#128279;</div>
+      <h3>Streaming Links</h3>
+      <p>Generate links for Spotify, Tidal, and Apple Music to share tracks with friends who aren't at the shop.</p>
+    </div>
+  </div>
+</section>
+
+<section id="modes">
+  <div class="section-label">Scan Modes</div>
+  <h2>A mode for every situation</h2>
+  <p>Whether you're flipping through a crate, typing catalog numbers, or scanning an entire shelf — Label Mate has you covered.</p>
+  <div class="modes-grid">
+    <div class="mode-card">
+      <h3>Auto</h3>
+      <p>Continuous scanning with multi-frame consensus. Just point and play.</p>
+    </div>
+    <div class="mode-card">
+      <h3>Manual</h3>
+      <p>Freeze the frame and tap the text you want to search.</p>
+    </div>
+    <div class="mode-card">
+      <h3>Matrix</h3>
+      <p>Type catalog or matrix numbers directly for offline lookup.</p>
+    </div>
+    <div class="mode-card">
+      <h3>Focus</h3>
+      <p>Guided multi-step scanning for tricky labels.</p>
+    </div>
+    <div class="mode-card">
+      <h3>LP</h3>
+      <p>Scan album covers — works even without readable text.</p>
+    </div>
+    <div class="mode-card">
+      <h3>Batch <span class="badge">Pro</span></h3>
+      <p>Scan multiple records in a session. Great for cataloging.</p>
+    </div>
+    <div class="mode-card">
+      <h3>Spine <span class="badge">Pro</span></h3>
+      <p>Scan record spines on a shelf without pulling them out.</p>
+    </div>
+  </div>
+</section>
+
+<section id="pricing">
+  <div class="section-label">Pricing</div>
+  <h2>Start free, go Pro when you're ready</h2>
+  <p>Try Label Mate with 5 free scans per day, or unlock everything with a 7-day free trial of Pro.</p>
+  <div class="pricing-cards">
+    <div class="pricing-card">
+      <h3>Free</h3>
+      <div class="price">$0</div>
+      <ul>
+        <li>5 scans per day</li>
+        <li>Auto, Manual, Matrix, Focus modes</li>
+        <li>Apple Music playback</li>
+        <li>DJ tools (key, BPM, waveform)</li>
+        <li>Discogs pricing</li>
+      </ul>
+    </div>
+    <div class="pricing-card featured">
+      <h3>Pro</h3>
+      <div class="price">$4.99 <span>/month</span></div>
+      <ul>
+        <li>Unlimited scans</li>
+        <li>All 7 scan modes</li>
+        <li>Batch &amp; Spine scanning</li>
+        <li>Streaming links (Spotify, Tidal)</li>
+        <li>Prepare list</li>
+        <li>7-day free trial</li>
+      </ul>
+      <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 1rem;">Also available annually at $49.99/year</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-links">
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="terms.html">Terms of Service</a>
+    <a href="mailto:joeyliechty@gmail.com">Contact</a>
+  </div>
+  <p>&copy; 2026 Joey Liechty. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
