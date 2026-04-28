@@ -203,8 +203,12 @@
     /* Modes */
     .modes-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      grid-template-columns: repeat(2, 1fr);
       gap: 1rem;
+    }
+
+    @media (max-width: 600px) {
+      .modes-grid { grid-template-columns: 1fr; }
     }
 
     .mode-card {
@@ -353,27 +357,27 @@
     <div class="feature-card">
       <div class="feature-icon">&#127911;</div>
       <h3>Instant Playback</h3>
-      <p>Hear the record within seconds via Apple Music. Falls back to YouTube previews when a match isn't on Apple Music.</p>
+      <p>Hear the record within seconds via Apple Music with full album context and tracklist. Falls back to YouTube when a match isn't on Apple Music.</p>
     </div>
     <div class="feature-card">
       <div class="feature-icon">&#128269;</div>
-      <h3>7.5M+ Catalog</h3>
-      <p>Identifies records by catalog number OCR or barcode scan against an on-device index of most commercially released records.</p>
+      <h3>Smart Recognition</h3>
+      <p>OCR, on-device AI, barcode scanning, and album cover matching — multiple strategies work together to identify your records against a 7.5M+ catalog.</p>
     </div>
     <div class="feature-card">
       <div class="feature-icon">&#127926;</div>
-      <h3>DJ Tools</h3>
-      <p>Key detection with Camelot codes, BPM analysis, waveform visualization, pitch fader, looper, and tap BPM.</p>
+      <h3>All Remixes</h3>
+      <p>Find every remix, repress, and variant of any track via Discogs. Tap to play any version through Apple Music or YouTube.</p>
     </div>
     <div class="feature-card">
       <div class="feature-icon">&#128178;</div>
-      <h3>Discogs Pricing</h3>
-      <p>See marketplace pricing, community stats, and condition breakdowns. Multi-currency support included.</p>
+      <h3>Discogs Integration</h3>
+      <p>Log in with your Discogs account to manage your collection and wantlist, browse release images, and see marketplace pricing in multiple currencies.</p>
     </div>
     <div class="feature-card">
       <div class="feature-icon">&#128247;</div>
-      <h3>Multiple Scan Modes</h3>
-      <p>Auto, manual, batch, spine scanning, and more. There's a mode for every situation — from quick crate digs to cataloging collections.</p>
+      <h3>Share &amp; Save</h3>
+      <p>Share cards to Instagram Stories, save tracks to a prepare list for later, view your scan history, and print vinyl crate labels via AirPrint.</p>
     </div>
     <div class="feature-card">
       <div class="feature-icon">&#128279;</div>
@@ -385,40 +389,16 @@
 
 <section id="modes">
   <div class="section-label">Scan Modes</div>
-  <h2>A mode for every situation</h2>
-  <p>Whether you're flipping through a crate, typing catalog numbers, or scanning an entire shelf — Label Mate has you covered.</p>
+  <h2>Two ways to identify records</h2>
+  <p>Whether you're flipping through a crate or looking up a specific pressing — there's a mode for it.</p>
   <div class="modes-grid">
     <div class="mode-card">
-      <h3>Auto</h3>
-      <p>Continuous scanning with multi-frame consensus. Just point and play.</p>
+      <h3>Scan</h3>
+      <p>Continuous real-time scanning. Point your camera at a label, barcode, or album cover and Label Mate identifies it automatically using multi-frame consensus.</p>
     </div>
     <div class="mode-card">
-      <h3>Manual</h3>
-      <p>Freeze the frame and tap the text you want to search.</p>
-    </div>
-    <div class="mode-card">
-      <h3>Matrix <span class="badge">Pro</span></h3>
-      <p>Type catalog or matrix numbers directly for offline lookup.</p>
-    </div>
-    <div class="mode-card">
-      <h3>Focus</h3>
-      <p>Guided multi-step scanning for tricky labels.</p>
-    </div>
-    <div class="mode-card">
-      <h3>LP</h3>
-      <p>Scan album covers — works even without readable text.</p>
-    </div>
-    <div class="mode-card">
-      <h3>Batch <span class="badge">Pro</span></h3>
-      <p>Scan multiple records in a session. Great for cataloging.</p>
-    </div>
-    <div class="mode-card">
-      <h3>Spine <span class="badge">Pro</span></h3>
-      <p>Scan record spines on a shelf without pulling them out.</p>
-    </div>
-    <div class="mode-card">
-      <h3>Shop <span class="badge">Pro</span></h3>
-      <p>Skips playback for fast pricing lookup. Built for shop buyers and vinyl sellers.</p>
+      <h3>Search <span class="badge">Pro</span></h3>
+      <p>Type a catalog number or artist name for instant results with live-as-you-type filtering by format, decade, and master release. Also supports barcode scanning.</p>
     </div>
   </div>
 </section>
@@ -426,16 +406,15 @@
 <section id="pricing">
   <div class="section-label">Pricing</div>
   <h2>Start free, go Pro when you're ready</h2>
-  <p>Try Label Mate with 5 free scans per day, or unlock everything with a 7-day free trial of Pro.</p>
+  <p>Your first 24 hours are unlimited. After that, enjoy 5 free plays per day — or unlock everything with Pro.</p>
   <div class="pricing-cards">
     <div class="pricing-card">
       <h3>Free</h3>
       <div class="price">$0</div>
       <ul>
-        <li>5 scans per day</li>
-        <li>Auto, Manual, Focus modes</li>
+        <li>5 plays per day</li>
+        <li>Scan mode</li>
         <li>Apple Music playback</li>
-        <li>DJ tools (key, BPM, waveform)</li>
         <li>Discogs pricing</li>
       </ul>
     </div>
@@ -443,10 +422,11 @@
       <h3>Pro</h3>
       <div class="price">$4.99 <span>/month</span></div>
       <ul>
-        <li>Unlimited scans</li>
-        <li>All 8 scan modes (incl. Matrix, Batch, Spine, Shop)</li>
-        <li>Auto-add to Apple Music library</li>
-        <li>Prepare list</li>
+        <li>Unlimited plays</li>
+        <li>Search mode (text + barcode lookup)</li>
+        <li>All Remixes — find every version of a track</li>
+        <li>Prepare list &amp; auto-add to Apple Music</li>
+        <li>Discogs collection &amp; wantlist sync</li>
       </ul>
       <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 1rem;">7-day free trial &middot; Also available at $49.99/year</p>
     </div>
