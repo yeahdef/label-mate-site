@@ -328,7 +328,7 @@
     <div class="feature-card">
       <div class="feature-icon">&#128269;</div>
       <h3>Smart Recognition</h3>
-      <p>OCR, on-device AI, barcode scanning, and album cover matching — multiple strategies work together to identify your records against a 7.5M+ catalog.</p>
+      <p>OCR, barcode scanning, and album cover matching — multiple strategies work together to identify your records against a catalog of 7.5M+ Discogs pressings.</p>
     </div>
     <div class="feature-card">
       <div class="feature-icon">&#127899;</div>
@@ -371,27 +371,37 @@
 <section id="how">
   <div class="section-label">How it works</div>
   <h2>How Label Mate identifies a record</h2>
-  <p>Point your camera and a stack of strategies goes to work — most of it on your phone, in the time it takes to pull the next record from the crate.</p>
+  <p>Getting from a scratched-up label to the right track is a waterfall of decisions — each step narrowing the field, with a fallback ready whenever one comes up empty.</p>
   <div class="features">
     <div class="feature-card">
       <div class="feature-icon" style="color: var(--accent); font-weight: 800;">1</div>
       <h3>Read the label</h3>
-      <p>Apple's Vision framework reads the text on-device, building consensus across multiple camera frames for accuracy. For worn or busy pressings, Focus mode captures the catalog number, artist, and title one at a time.</p>
+      <p>Apple's Vision framework reads every line of text on the label, building consensus across multiple camera frames so glare or a shaky hand doesn't throw it off — and correcting for common misreads like O&#8202;/&#8202;0 or an upside-down label.</p>
     </div>
     <div class="feature-card">
       <div class="feature-icon" style="color: var(--accent); font-weight: 800;">2</div>
-      <h3>Match the catalog</h3>
-      <p>The catalog number is matched against an offline database of 7.5M+ Discogs entries right on your phone — no connection needed. Barcodes and textless album covers are recognized too.</p>
+      <h3>Pull out the clues</h3>
+      <p>From that raw text, Label Mate teases apart catalog-number candidates, artist names, and titles — splitting mashed-together fine print and throwing out boilerplate. The catalog number is the strongest signal, so it leads.</p>
     </div>
     <div class="feature-card">
       <div class="feature-icon" style="color: var(--accent); font-weight: 800;">3</div>
-      <h3>Make sense of it</h3>
-      <p>On newer iPhones, an on-device AI model parses the label and races against fast heuristics. Tricky matches fall back to the cloud for extended metadata, tracklists, and credits.</p>
+      <h3>Look it up</h3>
+      <p>Candidates go to Label Mate's catalog service in a single batched request, matched against 7.5M+ Discogs catalog numbers. Back come the releases each one belongs to, with artist and format attached. Barcodes and album covers feed the same lookup.</p>
     </div>
     <div class="feature-card">
       <div class="feature-icon" style="color: var(--accent); font-weight: 800;">4</div>
-      <h3>Verify &amp; play</h3>
-      <p>Every match is confirmed against Apple Music before playback starts — so you hear the record you're holding, not a lookalike.</p>
+      <h3>Pick the right pressing</h3>
+      <p>When one catalog number maps to several pressings, the artist and title read off the label break the tie. If the number turns up nothing, the cascade falls back to resolving straight from artist&nbsp;+&nbsp;title instead.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon" style="color: var(--accent); font-weight: 800;">5</div>
+      <h3>Confirm on Apple Music</h3>
+      <p>Before a note plays, the chosen release is verified against Apple Music. Fuzzy matching handles punctuation, featured artists, and various-artists compilations so you land on the real track — not a re-recording or a lookalike.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon" style="color: var(--accent); font-weight: 800;">6</div>
+      <h3>Drop into the player</h3>
+      <p>The full tracklist loads into the player. Each track streams from Apple Music; when Apple Music doesn't have it, Label Mate drops to a YouTube video, and when only a clip exists you'll still hear a 30-second preview.</p>
     </div>
   </div>
 </section>
