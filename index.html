@@ -654,6 +654,23 @@
     }
     .waitlist-form button:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(255, 107, 53, 0.4); }
     .waitlist-form button:disabled { opacity: 0.6; cursor: default; transform: none; }
+    .waitlist-head {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+    .waitlist-count {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--accent);
+      background: rgba(255, 107, 53, 0.12);
+      border: 1px solid rgba(255, 107, 53, 0.35);
+      border-radius: 999px;
+      padding: 0.2rem 0.7rem;
+      white-space: nowrap;
+    }
     .waitlist-status { margin-top: 1rem; font-size: 0.9rem; min-height: 1.4em; }
     .waitlist-status.ok { color: #6fdc8c; }
     .waitlist-status.err { color: #ff8a8a; }
@@ -933,7 +950,10 @@
   <h2>Waiting on Android?</h2>
   <p>Label Mate is iOS-first while the app matures — but Android is on the radar. Leave your email and you'll be the first to know when it lands. Nothing else, no newsletter.</p>
   <div class="waitlist-card">
-    <h3 style="font-size: 1.2rem; font-weight: 700;">Join the Android waitlist</h3>
+    <div class="waitlist-head">
+      <h3 style="font-size: 1.2rem; font-weight: 700;">Join the Android waitlist</h3>
+      <span class="waitlist-count" id="waitlist-count" hidden></span>
+    </div>
     <form class="waitlist-form" id="waitlist-form" novalidate>
       <input type="email" id="waitlist-email" name="email" placeholder="you@example.com"
              autocomplete="email" inputmode="email" required aria-label="Email address">
@@ -997,6 +1017,21 @@
   var input = document.getElementById('waitlist-email');
   var button = document.getElementById('waitlist-submit');
   var status = document.getElementById('waitlist-status');
+  var countEl = document.getElementById('waitlist-count');
+
+  // Signup counter — purely decorative, so any failure just leaves it hidden.
+  function refreshCount() {
+    fetch('https://hybrid-api-l3mc2bddna-uc.a.run.app/v1/android-waitlist/count')
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (d) {
+        if (d && d.count > 0) {
+          countEl.textContent = d.count + (d.count === 1 ? ' person waiting' : ' people waiting');
+          countEl.hidden = false;
+        }
+      })
+      .catch(function () {});
+  }
+  refreshCount();
 
   form.addEventListener('submit', function (e) {
     e.preventDefault();
@@ -1018,6 +1053,7 @@
       status.textContent = 'You’re on the list — we’ll email you when Android ships.';
       status.className = 'waitlist-status ok';
       input.value = '';
+      refreshCount();
     }).catch(function () {
       status.textContent = 'Something went wrong — please try again in a minute.';
       status.className = 'waitlist-status err';
