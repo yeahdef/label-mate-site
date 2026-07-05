@@ -100,82 +100,104 @@
 
 <div class="content">
   <h1>Privacy Policy</h1>
-  <p class="updated">Last updated: April 22, 2026</p>
+  <p class="updated">Last updated: July 5, 2026</p>
 
-  <p>Label Mate ("the app") is developed by Joey Liechty ("we", "us"). This policy describes what data the app collects, how it is used, and your choices.</p>
+  <p>Label Mate ("the app") is developed by Joey Liechty ("we", "us"). This policy describes what data the app collects, how it is used, and your choices. It also covers the Label Mate website.</p>
 
   <h2>Summary</h2>
-  <p>Label Mate is designed to work primarily on-device. We do not create user accounts, do not collect personal information, and do not use analytics or advertising frameworks. The app sends limited data to cloud services only when needed to identify records and fetch metadata.</p>
+  <p>Label Mate is designed to work primarily on-device. We do not create Label Mate user accounts and do not use analytics or advertising frameworks. The app sends limited data to cloud services when needed to identify records and fetch metadata. If you choose to connect your Discogs account, the app uses it on your behalf as described below. The only personal information we ever hold is an email address you voluntarily submit to the Android waitlist on our website.</p>
 
   <h2>Data Collected</h2>
 
   <h3>Data We Do Not Collect</h3>
   <ul>
-    <li>No names, email addresses, or contact information</li>
     <li>No location data</li>
     <li>No device identifiers or advertising IDs</li>
     <li>No analytics, crash reports, or usage telemetry</li>
     <li>No browsing history or search history stored server-side</li>
+    <li>No access to your photo library or contacts</li>
   </ul>
 
   <h3>On-Device Data</h3>
-  <p>The following data is stored only on your device and is never transmitted:</p>
+  <p>The following data is stored only on your device:</p>
   <ul>
     <li><strong>App preferences</strong>: settings, toggles, and UI state (stored in UserDefaults)</li>
-    <li><strong>Scan history</strong>: your last 25 scans (stored in UserDefaults)</li>
-    <li><strong>Prepare list</strong>: tracks you save for later (stored in UserDefaults)</li>
-    <li><strong>Scan counter and trial status</strong>: daily scan count and free trial start date (stored in Keychain)</li>
+    <li><strong>Scan history</strong>: your recent scans (stored in a file in the app's private storage)</li>
+    <li><strong>Prepare list</strong>: tracks you save for later</li>
+    <li><strong>Manual label drafts</strong>: labels you create in the print hub (stored in a file in the app's private storage)</li>
+    <li><strong>Discogs data cache</strong>: if you connect a Discogs account, a local copy of your collection and wantlist, including your Discogs notes and date-added information, so browsing works quickly and offline</li>
+    <li><strong>Scan and print counters, trial status</strong>: daily scan count, daily print count, and free trial start date (stored in Keychain)</li>
+    <li><strong>Discogs sign-in tokens</strong>: if you connect a Discogs account, your OAuth tokens (stored in Keychain; removed when you log out)</li>
     <li><strong>Catalog database</strong>: a local index of catalog numbers for offline record identification (stored as a SQLite file)</li>
     <li><strong>Cached metadata</strong>: cloud API responses cached locally for up to 30 days to reduce network requests</li>
   </ul>
 
   <h3>Data Sent to Our Cloud Service</h3>
-  <p>When the app identifies a record, it sends <strong>catalog numbers, artist names, and track titles</strong> to our Cloud Run API to fetch metadata (tracklists, credits, YouTube video links). These are music industry identifiers, not personal data. No user identifier is attached to these requests.</p>
+  <p>When the app identifies a record, it sends <strong>catalog numbers, artist names, track titles, and text fragments read from the label</strong> to our Cloud Run API to fetch metadata (tracklists, credits, YouTube video links). For cover recognition, the app computes a compact numeric "fingerprint" of the cover (an embedding and perceptual hashes) on-device and sends <strong>that fingerprint — not the photo</strong> — to our API for matching. These are music-identification signals, not personal data. No user identifier is attached to these requests.</p>
   <p><strong>API endpoint</strong>: hosted on Google Cloud Run (us-central1)</p>
 
-  <h3>Data Sent to Google Cloud Vision (LP Mode Only)</h3>
-  <p>When you use LP mode (textless album cover recognition), the app sends a <strong>photograph of the album cover</strong> to Google Cloud Vision via our proxy server for reverse image matching and text detection. Images are processed by Google and are subject to <a href="https://cloud.google.com/terms/cloud-privacy-notice">Google Cloud's Privacy Policy</a>. We do not store these images on our servers.</p>
-  <p>LP mode is optional. If you do not use LP mode, no images are sent to any cloud service.</p>
+  <h3>Images Sent to Cloud Services</h3>
+  <p>Most scanning happens entirely on-device. A photo of the record label or cover leaves your device only in these cases:</p>
+  <ul>
+    <li><strong>Text-reading fallback</strong>: if on-device text recognition can't read a label confidently, the app sends the label photo to Google Cloud Vision via our proxy server for better text detection. Google processes these images under <a href="https://cloud.google.com/terms/cloud-privacy-notice">Google Cloud's Privacy Policy</a>; we do not store them.</li>
+    <li><strong>Cover-identification fallback</strong>: if cover matching is ambiguous, the app may send the cover photo to Google's Gemini model via our proxy server to help identify the album. We do not store these images.</li>
+    <li><strong>Missed-match reports</strong>: if "Help improve the database" is enabled and cover matching fails to find your record, the app uploads the cover photo (with the text fragments read from it) to our storage so we can fix the gap. See "Optional Crowdsource Contributions" below.</li>
+  </ul>
 
-  <h3>Data Sent to Discogs (Pricing)</h3>
-  <p>When pricing information is displayed, the app fetches marketplace data from Discogs via our proxy server. Only the release ID is sent. No personal data is transmitted. Pricing data is cached on-device for 24 hours per Discogs API terms. Discogs data is subject to the <a href="https://www.discogs.com/settings/privacy">Discogs Privacy Policy</a>.</p>
+  <h3>Discogs</h3>
+  <p>You can optionally connect your Discogs account to browse your collection and wantlist, see marketplace pricing, print labels for your records, and list records for sale.</p>
+  <ul>
+    <li><strong>Sign-in</strong>: authentication uses Discogs OAuth. Your Discogs credentials (password) are never seen by the app or by us — you sign in on discogs.com.</li>
+    <li><strong>Request signing</strong>: the Discogs API requires each request to be cryptographically signed with an application secret we cannot ship in the app. To sign a request, the app sends the request details and your OAuth token to our proxy server, which returns a signature. Your token is used only to compute the signature and is not stored on our servers.</li>
+    <li><strong>API calls</strong>: the actual Discogs API calls (collection, wantlist, pricing, listings) go directly from your device to Discogs under your account and are subject to the <a href="https://www.discogs.com/settings/privacy">Discogs Privacy Policy</a> and <a href="https://www.discogs.com/information/terms">Discogs Terms</a>.</li>
+    <li><strong>Pricing</strong>: marketplace pricing is fetched under your own Discogs account and cached on-device per Discogs API terms.</li>
+    <li><strong>Disconnecting</strong>: logging out of Discogs in the app deletes your tokens from the device. You can also revoke Label Mate's access in your Discogs account settings.</li>
+  </ul>
 
   <h3>Optional Crowdsource Contributions</h3>
   <p>If you enable "Help improve the database" in Settings (enabled by default), the app may send the following <strong>anonymous</strong> data to help improve results for all users:</p>
   <ul>
-    <li><strong>Barcode mappings</strong>: barcode number, catalog number, and master release ID</li>
-    <li><strong>YouTube video matches</strong>: master release ID, track title, and YouTube video ID</li>
+    <li><strong>Barcode mappings</strong>: barcode number, catalog number, and release ID</li>
+    <li><strong>YouTube video matches</strong>: release ID, track title, and YouTube video ID</li>
+    <li><strong>Streaming matches</strong>: release ID, track title, and matched Apple Music song ID</li>
+    <li><strong>BPM and key data</strong>: release ID, track title, and detected tempo/musical key</li>
+    <li><strong>Missed-match reports</strong>: a photo of the record cover the app failed to identify, plus the text read from it and the candidates the app considered</li>
   </ul>
-  <p>No user identifier, device identifier, or personal data is included in these reports. You can disable this at any time in Settings.</p>
+  <p>No user identifier, device identifier, or personal data is included in these reports. You can disable contributions at any time in Settings; the same toggle controls missed-match photo uploads.</p>
 
   <h2>Camera</h2>
-  <p>The app uses your camera to scan record labels and barcodes. In LP mode, images are sent to Google Cloud Vision as described above. In all other modes, camera frames are processed entirely on-device using Apple's Vision framework and are never transmitted. The app does not access your photo library.</p>
+  <p>The app uses your camera to scan record labels, album covers, and barcodes. By default, camera frames are processed on-device using Apple's Vision framework and on-device machine-learning models. Images leave your device only in the specific fallback and contribution cases described above. The app does not access your photo library.</p>
 
   <h2>Apple Music</h2>
-  <p>The app uses Apple's MusicKit framework to search for and play music. Your Apple Music subscription status and playback are handled entirely by Apple. We do not access your Apple Music listening history or library.</p>
+  <p>The app uses Apple's MusicKit framework to search for and play music. Your Apple Music subscription status and playback are handled entirely by Apple. We do not read your Apple Music listening history or library. If you enable the optional playlist auto-add feature (off by default), the app adds identified songs to an Apple Music playlist you choose — this is a write to your own library, performed at your direction, and no information about it is sent to us.</p>
+
+  <h2>Website (Android Waitlist)</h2>
+  <p>Our website offers an optional Android waitlist. If you submit your email address, we store it in our database for one purpose only: to notify you when an Android version is available. We do not share, sell, or use it for marketing. Email <a href="mailto:joeyliechty@gmail.com">joeyliechty@gmail.com</a> to have your address removed at any time.</p>
 
   <h2>Subscriptions</h2>
   <p>Subscriptions are processed by Apple through the App Store. We do not receive or store your payment information. Subscription status is verified on-device using StoreKit 2.</p>
 
   <h2>Data Retention</h2>
   <ul>
-    <li><strong>On-device data</strong>: persists until you delete the app or clear caches in Settings.</li>
+    <li><strong>On-device data</strong>: persists until you delete the app, clear caches in Settings, or (for Discogs tokens and cache) log out of Discogs.</li>
     <li><strong>Cloud API</strong>: we do not log or store API requests beyond standard Cloud Run request logging (retained for 30 days by Google Cloud for operational purposes).</li>
-    <li><strong>Crowdsource data</strong>: anonymous barcode and video mappings are stored indefinitely to improve the database. Because no user identifier is attached, we cannot associate this data with you or delete specific contributions.</li>
+    <li><strong>Crowdsource data</strong>: anonymous contributions (barcode, video, streaming, BPM/key mappings and missed-match photos) are stored until processed or indefinitely to improve the database. Because no user identifier is attached, we cannot associate this data with you or delete specific contributions.</li>
+    <li><strong>Android waitlist emails</strong>: stored until the Android version launches and notifications are sent, or until you ask us to remove yours.</li>
   </ul>
 
   <h2>Children's Privacy</h2>
   <p>Label Mate is not directed at children under 13. We do not knowingly collect data from children.</p>
 
   <h2>Your Rights</h2>
-  <p>Since we do not collect personal data or maintain user accounts, there is no personal data to access, correct, or delete. You can:</p>
+  <p>The app does not require an account and attaches no user identifier to its cloud requests. You can:</p>
   <ul>
-    <li><strong>Disable crowdsource contributions</strong> at any time in Settings</li>
-    <li><strong>Avoid LP mode</strong> to prevent any image uploads</li>
+    <li><strong>Disable crowdsource contributions</strong> (including missed-match photo uploads) at any time in Settings</li>
+    <li><strong>Disconnect your Discogs account</strong> in Settings, which deletes the tokens and cached collection data from your device; you can also revoke access on discogs.com</li>
     <li><strong>Clear all caches</strong> in Settings to remove locally stored metadata</li>
     <li><strong>Delete the app</strong> to remove all on-device data</li>
+    <li><strong>Request removal of your Android waitlist email</strong> by contacting us</li>
   </ul>
-  <p>For users in the EU/EEA, UK, or California: because we do not collect personal data as defined by GDPR or CCPA, these regulations' data subject rights (access, deletion, portability) do not apply. If you believe we have inadvertently collected personal data, contact us and we will investigate.</p>
+  <p>For users in the EU/EEA, UK, or California: the only personal data we hold is an email address you voluntarily submit to the Android waitlist. You may request access to or deletion of it at any time by emailing us. Data in your Discogs account is controlled by Discogs and subject to their privacy policy and your Discogs account settings.</p>
 
   <h2>Third-Party Services</h2>
   <table>
@@ -183,13 +205,16 @@
       <tr><th>Service</th><th>Purpose</th><th>Data Sent</th><th>Privacy Policy</th></tr>
     </thead>
     <tbody>
-      <tr><td>Google Cloud Run</td><td>API proxy, metadata</td><td>Catalog numbers, artist/title queries</td><td><a href="https://cloud.google.com/terms/cloud-privacy-notice">Google Cloud</a></td></tr>
-      <tr><td>Google Cloud Vision</td><td>Album cover recognition (LP mode)</td><td>Album cover photograph</td><td><a href="https://cloud.google.com/terms/cloud-privacy-notice">Google Cloud</a></td></tr>
-      <tr><td>Discogs</td><td>Marketplace pricing</td><td>Release ID</td><td><a href="https://www.discogs.com/settings/privacy">Discogs</a></td></tr>
-      <tr><td>Apple MusicKit</td><td>Music search and playback</td><td>Search queries (handled by Apple)</td><td><a href="https://www.apple.com/privacy/">Apple</a></td></tr>
+      <tr><td>Google Cloud Run</td><td>API proxy, metadata, cover matching</td><td>Catalog numbers, artist/title queries, label text, cover fingerprints</td><td><a href="https://cloud.google.com/terms/cloud-privacy-notice">Google Cloud</a></td></tr>
+      <tr><td>Google Cloud Vision</td><td>Text-reading fallback</td><td>Label photograph (fallback only)</td><td><a href="https://cloud.google.com/terms/cloud-privacy-notice">Google Cloud</a></td></tr>
+      <tr><td>Google Gemini</td><td>Cover-identification fallback</td><td>Cover photograph (fallback only)</td><td><a href="https://cloud.google.com/terms/cloud-privacy-notice">Google Cloud</a></td></tr>
+      <tr><td>Discogs</td><td>Collection, wantlist, pricing, listings (if connected)</td><td>API requests under your Discogs account</td><td><a href="https://www.discogs.com/settings/privacy">Discogs</a></td></tr>
+      <tr><td>Apple MusicKit</td><td>Music search, playback, optional playlist add</td><td>Search queries (handled by Apple)</td><td><a href="https://www.apple.com/privacy/">Apple</a></td></tr>
       <tr><td>Apple StoreKit</td><td>Subscriptions</td><td>Payment (handled by Apple)</td><td><a href="https://www.apple.com/privacy/">Apple</a></td></tr>
+      <tr><td>Amazon</td><td>Printer gear recommendations</td><td>Nothing sent by the app; links open Amazon with our affiliate tag</td><td><a href="https://www.amazon.com/privacy">Amazon</a></td></tr>
     </tbody>
   </table>
+  <p>The printer and supply recommendations in the app link to Amazon using our Amazon Associates affiliate tag; we may earn a commission on qualifying purchases. The app sends no data to Amazon — the links simply open in your browser, where Amazon's own privacy policy applies.</p>
 
   <h2>Changes to This Policy</h2>
   <p>We may update this policy from time to time. The "Last updated" date at the top will reflect the most recent revision. Continued use of the app after changes constitutes acceptance of the updated policy.</p>
