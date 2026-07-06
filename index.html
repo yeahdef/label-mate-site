@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Label Mate - Scan Vinyl, Play Music</title>
+  <title>Label Mate - Scan a Record, Hear the Music, Print a Label.</title>
   <meta name="description" content="Point your phone at a record label and hear the music instantly. Label Mate identifies vinyl records via OCR and plays them through Apple Music.">
-  <meta property="og:title" content="Label Mate - Scan Vinyl, Play Music">
+  <meta property="og:title" content="Label Mate - Scan a Record, Hear the Music, Print a Label">
   <meta property="og:description" content="Point your phone at a record label and hear the music instantly. Made for DJs, collectors, and crate diggers.">
   <meta property="og:type" content="website">
   <style>
@@ -349,7 +349,7 @@
     @keyframes drift1 { to { transform: translate(130px, 90px) scale(1.18); } }
     @keyframes drift2 { to { transform: translate(-110px, 70px) scale(1.12); } }
 
-    /* Hero: spinning vinyl record with the app icon as the label */
+    /* Hero: vinyl record with the app icon as the label */
     .hero-visual {
       position: relative;
       width: clamp(190px, 42vw, 280px);
@@ -368,8 +368,6 @@
         0 0 0 1px rgba(255, 255, 255, 0.04),
         inset 0 0 70px rgba(0, 0, 0, 0.85);
       position: relative;
-      animation: spin 14s linear infinite;
-      transition: animation-duration 0.4s;
     }
     .vinyl::before {
       content: "";
@@ -378,7 +376,6 @@
       background: conic-gradient(from 0deg, transparent 0 42%, rgba(255, 255, 255, 0.14) 50%, transparent 58% 100%);
       mix-blend-mode: screen;
     }
-    .hero-visual:hover .vinyl { animation-duration: 4s; }
     .vinyl-label {
       position: absolute; inset: 31%;
       border-radius: 50%;
@@ -394,7 +391,6 @@
       filter: blur(22px);
       animation: pulse 4s ease-in-out infinite;
     }
-    @keyframes spin { to { transform: rotate(360deg); } }
     @keyframes pulse { 0%, 100% { opacity: 0.55; } 50% { opacity: 1; } }
     @keyframes pop { from { opacity: 0; transform: scale(0.85); } to { opacity: 1; transform: none; } }
 
@@ -444,7 +440,7 @@
     /* Gradient primary CTA */
     .cta-primary { background: linear-gradient(120deg, var(--accent), var(--accent-2)); }
 
-    /* Glass feature cards with gradient-border glow on hover */
+    /* Glass feature cards */
     .feature-card {
       background: linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.012));
       -webkit-backdrop-filter: blur(8px);
@@ -453,26 +449,10 @@
       overflow: hidden;
       transition: transform 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease;
     }
-    .feature-card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      border-radius: inherit;
-      padding: 1px;
-      background: linear-gradient(135deg, transparent 35%, var(--accent) 130%);
-      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      opacity: 0;
-      transition: opacity 0.28s;
-      pointer-events: none;
-    }
     .feature-card:hover {
       transform: translateY(-6px);
-      border-color: transparent;
-      box-shadow: 0 22px 50px rgba(0, 0, 0, 0.5), 0 0 45px var(--accent-glow);
+      box-shadow: 0 22px 50px rgba(0, 0, 0, 0.5);
     }
-    .feature-card:hover::before { opacity: 1; }
     .feature-icon { display: inline-block; transition: transform 0.28s ease; }
     .feature-card:hover .feature-icon { transform: scale(1.14) rotate(-4deg); }
 
@@ -555,7 +535,7 @@
     }
     .gallery-shot:hover img {
       transform: translateY(-5px);
-      box-shadow: 0 24px 55px rgba(0, 0, 0, 0.6), 0 0 40px var(--accent-glow);
+      box-shadow: 0 24px 55px rgba(0, 0, 0, 0.6);
     }
     .gallery-shot figcaption {
       margin-top: 0.6rem;
@@ -697,8 +677,8 @@
     </div>
   </div>
   <a href="https://apps.apple.com/us/app/label-mate/id6759539466" class="hero-eyebrow"><span class="dot"></span> Now on the iOS App Store</a>
-  <h1>Scan vinyl.<br><span>Hear the music.</span><br>Print a label.</h1>
-  <p>Point your phone at a record label and hear it instantly through Apple Music or YouTube, then print labels, price tags, and info sheets for the records you keep.<br><br>Made by a DJ, for DJs, collectors, and crate diggers.</p>
+  <h1>Scan a Record.<br><span>Hear the Music.</span><br>Print a Label.</h1>
+  <p>Point your phone at a record label and hear it instantly, then print labels, price tags, and info sheets for your records.<br><br>Made by a DJ, for DJs.</p>
   <div class="cta-group">
     <a href="https://apps.apple.com/us/app/label-mate/id6759539466" class="cta cta-primary">Download on the App Store</a>
     <a href="#features" class="cta cta-secondary">Learn more</a>
