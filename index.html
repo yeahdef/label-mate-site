@@ -461,6 +461,11 @@
     .feature-icon { display: inline-block; transition: transform 0.28s ease; }
     .feature-card:hover .feature-icon { transform: scale(1.14) rotate(-4deg); }
 
+    /* Milk crate of records — drawn, because no emoji is a record crate.
+       Sized to sit on the same baseline as the emoji icons beside it. */
+    .crate-glyph { width: 1.9rem; height: 1.9rem; vertical-align: -0.15em; }
+    .tutorial summary .crate-glyph { width: 1.15rem; height: 1.15rem; vertical-align: -0.18em; margin-right: 0.15rem; }
+
     /* Waterfall step badges */
     #how .feature-icon {
       display: inline-flex;
@@ -667,6 +672,7 @@
   <div class="nav-brand"><img src="icon.png" alt="Label Mate" class="nav-icon">Label&nbsp;Mate</div>
   <div class="nav-links">
     <a href="#features">Features</a>
+    <a href="#community">Community</a>
     <a href="#gallery">Screenshots</a>
     <a href="#tutorials">Tutorials</a>
     <a href="#pricing">Pricing</a>
@@ -708,6 +714,27 @@
       <div class="feature-icon">&#127899;</div>
       <h3>DJ Tools</h3>
       <p>Musical key in Camelot codes, BPM detection, and a waveform view: everything you need to read a record and plan your next mix straight from a scan. Tap along to set the tempo by ear.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">&#129658;</div>
+      <h3>Doctor Beat &amp; Doctor Key</h3>
+      <p>Don't trust a BPM you didn't check. Long-press the BPM badge and Doctor Beat loops a bar of the track seamlessly at the tempo you dial in; if the loop drifts, the number is wrong. Doctor Key does the same for the key, playing the scale over the loop so you can hear the fit.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">
+        <svg class="crate-glyph" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8"
+             stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="A milk crate of records">
+          <!-- records standing in the crate -->
+          <path d="M9 11.5v8M13 10.8v8.7M17 10.8v8.7M21 11.5v8" stroke-width="1.5" opacity="0.55"/>
+          <!-- crate body: slightly tapered, like a real milk crate -->
+          <path d="M6 10h20l-1.6 15.5a1.5 1.5 0 0 1-1.5 1.3H9.1a1.5 1.5 0 0 1-1.5-1.3L6 10Z"/>
+          <!-- rim + slats -->
+          <path d="M5 8.2h22" stroke-width="2.2"/>
+          <path d="M6.9 17.4h18.2M7.4 22.2h17.2" opacity="0.75"/>
+        </svg>
+      </div>
+      <h3>Crates</h3>
+      <p>Set a crate active and every record you scan drops straight into it. Flip through it like a real bin, or print a crate sheet: a one-page rundown of everything you brought, covers and catalog numbers included. Pro members can print every label in the crate in one batch run.</p>
     </div>
     <div class="feature-card">
       <div class="feature-icon">&#128178;</div>
@@ -815,6 +842,33 @@
   </p>
 </section>
 
+<section id="community">
+  <h2>Every dig makes the next one sharper</h2>
+  <p>Label Mate is not a static catalog that ages badly. The records you scan, the tempos you tap, and the keys you confirm quietly teach it, and the next person to pull that record out of the bin gets the answer you found.</p>
+
+  <div class="features">
+    <div class="feature-card">
+      <div class="feature-icon" style="color: var(--accent); font-weight: 800;">1</div>
+      <h3>You dig</h3>
+      <p>Scan a record and the app works out which Apple Music track that pressing really maps to, which YouTube video is the right one when it never made it to streaming, and which barcode belongs to which pressing. Tap out a tempo, or settle a BPM and key with Doctor Beat and Doctor Key, and that's an answer too.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon" style="color: var(--accent); font-weight: 800;">2</div>
+      <h3>The crowd agrees</h3>
+      <p>Nothing is taken on one person's word. A value has to be independently corroborated before it's promoted into the shared database, so a mistyped tempo goes nowhere. BPMs are folded across octaves first, so someone counting a track at 70 and someone counting it at 140 are treated as agreeing, because they are.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon" style="color: var(--accent); font-weight: 800;">3</div>
+      <h3>Everyone gets it</h3>
+      <p>Because of this: Eventually, the BPM and key are already filled in when you scan the record. Every record. The right song plays first time instead of everyone having to search on YouTube or various streaming services. The tunes that streaming forgot... still play. Pressings that no data dump has ever heard of resolve from their barcode. That's thousands of diggers doing the work once, for each other. Thank you all!</p>
+    </div>
+  </div>
+
+  <p style="max-width: 650px; margin-top: 2rem; padding: 0.9rem 1.25rem; border-left: 3px solid var(--accent); background: rgba(255, 107, 53, 0.06); border-radius: 0 12px 12px 0; color: var(--text-muted); font-size: 0.95rem;">
+    <strong style="color: var(--text);">Anonymous, and yours to switch off.</strong> At Label Mate, we don't like making accounts for things. You don't either. You'll never need an account to access Label Mate, and it will remain that way. Contributions carry no personally identifiable information, no device identifier, and nothing that ties a record back to you: a catalog number, a tempo, a key, a video id. And if you don't want to contribute: it's one toggle in Settings, <em>&ldquo;Help improve the database&rdquo;</em>, and turning it off costs you nothing in the app. Details are in the <a href="privacy.html#crowdsource" style="color: var(--accent);">privacy policy</a>.
+  </p>
+</section>
+
 <section id="gallery">
   <h2>See it in action</h2>
   <p>From the crate to the speakers to the printer: swipe through what a dig looks like with Label Mate.</p>
@@ -878,9 +932,9 @@
     <div class="tutorial-body">
       <ol>
         <li>Tap the <strong>printer button</strong> next to Settings; this opens the print hub, no camera needed.</li>
-        <li>Know the record? Find it in <strong>your Discogs collection</strong> (browse by letter or search) or paste its Discogs link; the tracklist, BPMs, and keys fill in automatically.</li>
+        <li>Know the record? Find it in <strong>your Discogs collection</strong> (browse by letter or search) or paste its Discogs link: the tracklist, BPMs, and keys fill in automatically.</li>
         <li>Not on Discogs at all? Choose <strong>Manual entry</strong>: type the artist and tracks, and dial in positions, times, BPMs, and keys with the wheels, no typing codes.</li>
-        <li>Add notes (pressing quirks, where you found it); they print in the label's NOTES area.</li>
+        <li>Add notes (pressing quirks, where you found it). they print in the label's NOTES area.</li>
         <li>Preview and print.</li>
       </ol>
       <div class="tip">Every record in your collection also gets a <strong>Player</strong> button in the hub; hear it without scanning.</div>
@@ -898,6 +952,50 @@
       <div class="tip">Rolls are free; they never touch your daily scan budget.</div>
     </div>
   </details>
+
+  <details class="tutorial">
+    <summary><svg class="crate-glyph" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11.5v8M13 10.8v8.7M17 10.8v8.7M21 11.5v8" stroke-width="1.5" opacity="0.55"/><path d="M6 10h20l-1.6 15.5a1.5 1.5 0 0 1-1.5 1.3H9.1a1.5 1.5 0 0 1-1.5-1.3L6 10Z"/><path d="M5 8.2h22" stroke-width="2.2"/><path d="M6.9 17.4h18.2M7.4 22.2h17.2" opacity="0.75"/></svg> Build a crate for a gig</summary>
+    <div class="tutorial-body">
+      <ol>
+        <li>Open the <strong>Print Hub</strong> and tap <strong>New Crate</strong>: name it after the night you're playing.</li>
+        <li>Back on the scan screen, <strong>hold the Print Hub button</strong> and pick that crate. It's now the active crate, and every record you scan drops straight into it.</li>
+        <li>Pull records, scan them, put them in the box. Swipe a card away to pull it back out of the crate.</li>
+        <li><strong>Swipe the stack</strong> to flip through the crate like a real bin; tap any record to play it.</li>
+        <li>Cards flag what's still missing: <em>&ldquo;2 missing BPM&rdquo;</em>, <em>&ldquo;1 missing key&rdquo;</em>, or a star when a record's metadata is complete. Fill the gaps when you print, by <strong>holding a track's key/BPM chip</strong> in the approval step to set it with the stepper and Camelot wheel, or page Doctor Beat from the player and get the tempo by ear. What you set is what prints.</li>
+        <li><strong>Hold the crate</strong> to print every label in one run (<strong>Pro</strong>), or print a <strong>crate sheet</strong>: a single page listing everything you brought, so you can see the whole box at a glance without flipping through it.</li>
+      </ol>
+      <div class="tip">Already labelled the records? Scan their QR codes to sweep the whole crate in seconds; the codes identify a record faster than the camera can read the label.</div>
+    </div>
+  </details>
+
+  <details class="tutorial">
+    <summary>&#129658; Doctor Beat: check a BPM by ear</summary>
+    <div class="tutorial-body">
+      <ol>
+        <li>Open a record in the player and <strong>long-press the BPM badge</strong> to page Doctor Beat.</li>
+        <li>A bar of the track loops seamlessly at the tempo shown. A correct BPM loops forever without a seam; a wrong one drifts or stutters.</li>
+        <li><strong>Hold the loop region and drag</strong> to slide it somewhere more useful, a bar with a clear kick pattern rather than an intro. Plain-drag the waveform to scroll to another part of the track, and <strong>pinch</strong> to zoom in for precise work.</li>
+        <li><strong>Hold a loop edge and drag</strong> to fine-tune that boundary. Resizing the loop <em>is</em> setting the tempo: fit the loop exactly to one bar and the BPM follows. It's usually faster than the wheel.</li>
+        <li>...Or spin the <strong>BPM wheel</strong> until the loop locks, and use <strong>&times;2 / &divide;2</strong> when the tempo is right but the loop is the wrong length.</li>
+        <li>Long-press the badge again to exit and keep the tempo.</li>
+      </ol>
+      <div class="tip">A corrected BPM sticks to the record: it shows in the player, on its crate card, and prints on its label.</div>
+    </div>
+  </details>
+
+  <details class="tutorial">
+    <summary>&#127929; Doctor Key: hear whether the key fits</summary>
+    <div class="tutorial-body">
+      <ol>
+        <li><strong>Long-press the key badge</strong> in the player to page Doctor Key. It reuses the loop you set in Doctor Beat, so perfect the loop there first if you haven't.</li>
+        <li>The loop plays with the scale of the selected key over the top, ascending and descending, in time. In the right key the scale sits in the track; in the wrong one it fights it, and you'll hear the clash immediately.</li>
+        <li>Spin the wheel through the Camelot codes until the scale settles into the record. The piano roll shows where you are in the bar.</li>
+        <li><strong>Slide up or down on the waveform</strong> to set the scale's volume against the track, and tap it to restart the loop.</li>
+        <li>Long-press the badge again to exit and keep the key.</li>
+      </ol>
+      <div class="tip">No key detected at all? Doctor Key still opens, seeded at 8A: dial until it fits and you've got one where you had nothing.</div>
+    </div>
+  </details>
 </section>
 
 <section id="pricing">
@@ -911,6 +1009,7 @@
         <li>5 scans per day</li>
         <li>3 label prints per day</li>
         <li>Unlimited dice rolls</li>
+        <li>Crates, Doctor Beat &amp; Doctor Key</li>
       </ul>
     </div>
     <div class="pricing-card featured">
@@ -919,6 +1018,7 @@
       <ul>
         <li>Unlimited scans</li>
         <li>Unlimited label printing</li>
+        <li>Batch print a whole crate at once</li>
       </ul>
       <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 1rem;">Also available at $49.99/year &middot; save 15%</p>
     </div>
