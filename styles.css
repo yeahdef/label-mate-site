@@ -1,0 +1,811 @@
+    :root {
+      --bg: #0a0a0a;
+      --surface: #141414;
+      --border: #222;
+      --text: #e8e8e8;
+      --text-muted: #888;
+      --accent: #ff6b35;
+      --accent-glow: rgba(255, 107, 53, 0.15);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Nav */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 1rem 2rem;
+      background: rgba(10, 10, 10, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-brand {
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .nav-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      margin-left: 2rem;
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    /* Hero */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 6rem 2rem 4rem;
+      background:
+        radial-gradient(ellipse at 50% 0%, var(--accent-glow) 0%, transparent 60%),
+        var(--bg);
+    }
+
+    .hero-icon {
+      width: 120px;
+      height: 120px;
+      border-radius: 26px;
+      margin-bottom: 2rem;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 span { color: var(--accent); }
+
+    .hero p {
+      font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+      color: var(--text-muted);
+      max-width: 600px;
+      margin-bottom: 2.5rem;
+    }
+
+    .cta-group {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.9rem 2rem;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .cta:hover { transform: translateY(-2px); }
+
+    .cta-primary {
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 4px 20px rgba(255, 107, 53, 0.3);
+    }
+
+    .cta-primary:hover {
+      box-shadow: 0 6px 28px rgba(255, 107, 53, 0.45);
+    }
+
+    .cta-secondary {
+      background: var(--surface);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    /* Sections */
+    section {
+      padding: 6rem 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+
+    section h2 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+
+    section > p {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      max-width: 650px;
+      margin-bottom: 3rem;
+    }
+
+    /* Feature grid */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .feature-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      transition: border-color 0.2s;
+    }
+
+    .feature-card:hover { border-color: #333; }
+
+    .feature-icon {
+      font-size: 1.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .feature-card h3 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .feature-card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    /* Pricing */
+    .pricing-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      max-width: 700px;
+    }
+
+    .pricing-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2.5rem 2rem;
+    }
+
+    .pricing-card.featured {
+      border-color: var(--accent);
+      box-shadow: 0 0 40px var(--accent-glow);
+    }
+
+    .pricing-card h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .pricing-card .price {
+      font-size: 2.5rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+
+    .pricing-card .price span {
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--text-muted);
+    }
+
+    .pricing-card ul {
+      list-style: none;
+      margin-top: 1.5rem;
+    }
+
+    .pricing-card li {
+      padding: 0.4rem 0;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .pricing-card li::before {
+      content: "\2713 ";
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 3rem 2rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    footer a {
+      color: var(--text-muted);
+      text-decoration: none;
+      margin: 0 1rem;
+      transition: color 0.2s;
+    }
+
+    footer a:hover { color: var(--text); }
+
+    footer .footer-links { margin-bottom: 1rem; }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      nav { padding: 0.75rem 1rem; }
+      .nav-links a { margin-left: 1rem; font-size: 0.8rem; }
+      section { padding: 4rem 1.25rem; }
+      .hero { padding: 5rem 1.25rem 3rem; }
+      .hero-icon { width: 90px; height: 90px; border-radius: 20px; }
+    }
+    /* ============================================================
+       Visual polish: "wow" layer (overrides the rules above)
+       ============================================================ */
+    :root {
+      --accent-2: #ff9a5a;
+      --accent-3: #ffd23f;
+    }
+
+    html { scroll-behavior: smooth; }
+    section[id], #how, #features, #pricing { scroll-margin-top: 90px; }
+
+    /* Film grain over the whole page */
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+      opacity: 0.035;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    /* Sticky nav reacts to scroll */
+    nav { transition: background 0.3s, box-shadow 0.3s; }
+    nav.scrolled {
+      background: rgba(10, 10, 10, 0.92);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.55);
+    }
+    .nav-icon { box-shadow: 0 0 18px var(--accent-glow); }
+
+    /* Hero: animated aurora background */
+    .hero { position: relative; overflow: hidden; }
+    .hero::before, .hero::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(90px);
+      z-index: 0;
+      mix-blend-mode: screen;
+      pointer-events: none;
+    }
+    .hero::before {
+      width: 540px; height: 540px;
+      left: -140px; top: -120px;
+      background: radial-gradient(circle, rgba(255, 107, 53, 0.55), transparent 70%);
+      animation: drift1 19s ease-in-out infinite alternate;
+    }
+    .hero::after {
+      width: 520px; height: 520px;
+      right: -160px; top: 30px;
+      background: radial-gradient(circle, rgba(120, 90, 255, 0.32), transparent 70%);
+      animation: drift2 23s ease-in-out infinite alternate;
+    }
+    .hero > * { position: relative; z-index: 1; }
+    @keyframes drift1 { to { transform: translate(130px, 90px) scale(1.18); } }
+    @keyframes drift2 { to { transform: translate(-110px, 70px) scale(1.12); } }
+
+    /* Hero: vinyl record with the app icon as the label */
+    .hero-visual {
+      position: relative;
+      width: clamp(190px, 42vw, 280px);
+      aspect-ratio: 1;
+      margin: 0 auto 2.5rem;
+      animation: pop 1s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+    }
+    .vinyl {
+      width: 100%; height: 100%;
+      border-radius: 50%;
+      background:
+        repeating-radial-gradient(circle at 50% 50%, rgba(255,255,255,0.05) 0 1px, rgba(0,0,0,0) 1px 4px),
+        radial-gradient(circle at 50% 50%, #1c1c1c 0%, #0c0c0c 60%, #050505 100%);
+      box-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.7),
+        0 0 0 1px rgba(255, 255, 255, 0.04),
+        inset 0 0 70px rgba(0, 0, 0, 0.85);
+      position: relative;
+    }
+    .vinyl::before {
+      content: "";
+      position: absolute; inset: 0;
+      border-radius: 50%;
+      background: conic-gradient(from 0deg, transparent 0 42%, rgba(255, 255, 255, 0.14) 50%, transparent 58% 100%);
+      mix-blend-mode: screen;
+    }
+    .vinyl-label {
+      position: absolute; inset: 31%;
+      border-radius: 50%;
+      overflow: hidden;
+      box-shadow: 0 0 0 5px rgba(0, 0, 0, 0.55), 0 12px 30px rgba(0, 0, 0, 0.5);
+    }
+    .vinyl-label img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .vinyl-glow {
+      position: absolute; inset: -28px;
+      border-radius: 50%;
+      z-index: -1;
+      background: radial-gradient(circle, var(--accent-glow), transparent 70%);
+      filter: blur(22px);
+      animation: pulse 4s ease-in-out infinite;
+    }
+    @keyframes pulse { 0%, 100% { opacity: 0.55; } 50% { opacity: 1; } }
+    @keyframes pop { from { opacity: 0; transform: scale(0.85); } to { opacity: 1; transform: none; } }
+
+    /* Hero eyebrow pill */
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text);
+      text-decoration: none;
+      padding: 0.4rem 0.95rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.03);
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+      margin-bottom: 1.75rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .hero-eyebrow:hover { border-color: var(--accent); transform: translateY(-1px); }
+    .hero-eyebrow .dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 10px var(--accent);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    /* Gradient hero accent + entrance */
+    .hero h1 span {
+      background: linear-gradient(120deg, var(--accent), var(--accent-2) 55%, var(--accent-3));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero h1 span.hero-blue {
+      background: linear-gradient(120deg, #4facfe, #3a7bd5 55%, #00d2ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+    .hero-eyebrow, .hero h1, .hero p, .cta-group {
+      animation: rise 0.85s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+    }
+    .hero h1 { animation-delay: 0.08s; }
+    .hero p { animation-delay: 0.16s; }
+    .cta-group { animation-delay: 0.24s; }
+    @keyframes rise { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: none; } }
+
+    /* Gradient primary CTA */
+    .cta-primary { background: linear-gradient(120deg, var(--accent), var(--accent-2)); }
+
+    /* Glass feature cards */
+    .feature-card {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.012));
+      -webkit-backdrop-filter: blur(8px);
+      backdrop-filter: blur(8px);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease;
+    }
+    .feature-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 22px 50px rgba(0, 0, 0, 0.5);
+    }
+    .feature-icon { display: inline-block; transition: transform 0.28s ease; }
+    .feature-card:hover .feature-icon { transform: scale(1.14) rotate(-4deg); }
+
+    /* Milk crate of records — drawn, because no emoji is a record crate.
+       Sized to sit on the same baseline as the emoji icons beside it. */
+    .crate-glyph { width: 1.9rem; height: 1.9rem; vertical-align: -0.15em; }
+    .tutorial summary .crate-glyph { width: 1.15rem; height: 1.15rem; vertical-align: -0.18em; margin-right: 0.15rem; }
+
+    /* Waterfall step badges */
+    #how .feature-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 46px; height: 46px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #fff !important;
+      font-size: 1.2rem;
+      box-shadow: 0 8px 22px var(--accent-glow);
+    }
+    #how .feature-card:hover .feature-icon { transform: scale(1.1) rotate(0deg); }
+
+    /* Pricing: featured ribbon + lift */
+    .pricing-card.featured { position: relative; transform: scale(1.03); }
+    .pricing-card.featured::before {
+      content: "Most popular";
+      position: absolute;
+      top: -12px; left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(120deg, var(--accent), var(--accent-2));
+      color: #fff;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.32rem 0.85rem;
+      border-radius: 999px;
+      white-space: nowrap;
+      box-shadow: 0 8px 22px var(--accent-glow);
+    }
+
+    /* Scroll-reveal */
+    .pre-reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+      transition-delay: var(--d, 0ms);
+    }
+    .pre-reveal.is-visible { opacity: 1; transform: none; }
+
+    @media (max-width: 600px) {
+      .pricing-card.featured { transform: none; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .vinyl, .vinyl-glow, .hero::before, .hero::after, .hero-eyebrow .dot,
+      .hero-visual, .hero-eyebrow, .hero h1, .hero p, .cta-group { animation: none !important; }
+      .pre-reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+    }
+
+    /* Screenshots gallery: horizontal snap strip */
+    .gallery-strip {
+      display: flex;
+      gap: 1.25rem;
+      overflow-x: auto;
+      padding: 0.5rem 0.25rem 1.25rem;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+      scrollbar-color: var(--border) transparent;
+    }
+    .gallery-shot {
+      flex: 0 0 auto;
+      width: min(240px, 62vw);
+      scroll-snap-align: start;
+    }
+    .gallery-shot img {
+      width: 100%;
+      display: block;
+      border-radius: 22px;
+      border: 1px solid var(--border);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .gallery-shot:hover img {
+      transform: translateY(-5px);
+      box-shadow: 0 24px 55px rgba(0, 0, 0, 0.6);
+    }
+    .gallery-shot figcaption {
+      margin-top: 0.6rem;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    /* Tutorials: accordion cards */
+    .tutorial {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.012));
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      margin-bottom: 1rem;
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+    .tutorial[open] { border-color: #3a3a3a; }
+    .tutorial summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 1.25rem 1.5rem;
+      font-weight: 600;
+      font-size: 1.05rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      user-select: none;
+    }
+    .tutorial summary::-webkit-details-marker { display: none; }
+    .tutorial summary::after {
+      content: "+";
+      margin-left: auto;
+      color: var(--accent);
+      font-size: 1.4rem;
+      font-weight: 400;
+      transition: transform 0.2s;
+    }
+    .tutorial[open] summary::after { transform: rotate(45deg); }
+    .tutorial-body {
+      padding: 0 1.5rem 1.5rem;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+    .tutorial-body ol { margin: 0.25rem 0 0 1.25rem; }
+    .tutorial-body li { padding: 0.3rem 0; }
+    .tutorial-body li strong { color: var(--text); font-weight: 600; }
+    .tutorial-body .tip {
+      margin-top: 0.9rem;
+      padding: 0.7rem 1rem;
+      border-left: 3px solid var(--accent);
+      background: rgba(255, 107, 53, 0.06);
+      border-radius: 0 10px 10px 0;
+      font-size: 0.88rem;
+    }
+
+    /* Android waitlist */
+    #android .waitlist-card {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.012));
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2.5rem 2rem;
+      max-width: 560px;
+      text-align: center;
+      margin: 0 auto;
+    }
+    .waitlist-form {
+      display: flex;
+      gap: 0.6rem;
+      margin-top: 1.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .waitlist-form input[type="email"] {
+      flex: 1 1 260px;
+      padding: 0.85rem 1.1rem;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: var(--bg);
+      color: var(--text);
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .waitlist-form input[type="email"]:focus { border-color: var(--accent); }
+    .waitlist-form button {
+      padding: 0.85rem 1.6rem;
+      border: none;
+      border-radius: 12px;
+      background: linear-gradient(120deg, var(--accent), var(--accent-2));
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .waitlist-form button:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(255, 107, 53, 0.4); }
+    .waitlist-form button:disabled { opacity: 0.6; cursor: default; transform: none; }
+    .waitlist-head {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+    .waitlist-count {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--accent);
+      background: rgba(255, 107, 53, 0.12);
+      border: 1px solid rgba(255, 107, 53, 0.35);
+      border-radius: 999px;
+      padding: 0.2rem 0.7rem;
+      white-space: nowrap;
+    }
+    .waitlist-status { margin-top: 1rem; font-size: 0.9rem; min-height: 1.4em; }
+    .waitlist-status.ok { color: #6fdc8c; }
+    .waitlist-status.err { color: #ff8a8a; }
+
+    /* ---- Multi-page shell (added when the single page was split) ---- */
+
+    /* --- Nav layout --------------------------------------------------------
+       The links were `inline` spaced with `margin-left`, and the active state
+       was an ::after underline — a block box inside an inline box, which
+       changed that one link's height. The row therefore sat at a different
+       place on every page, depending on which link was current.
+
+       Fixed by making the row a flex line with one gap, and by reserving the
+       underline's space on EVERY link with a transparent bottom border. Moving
+       between pages now changes only two colours, never a box size. */
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.75rem;
+    }
+    .nav-links a {
+      margin-left: 0;
+      display: inline-flex;
+      align-items: center;
+      white-space: nowrap;
+      line-height: 1.4;
+      padding-bottom: 2px;
+      border-bottom: 2px solid transparent;
+    }
+    .nav-links a.is-active {
+      color: var(--text);
+      border-bottom-color: var(--accent);
+    }
+    nav { gap: 1rem; }
+    .nav-brand { flex-shrink: 0; }
+
+    /* Instagram: brand mark in the nav, so it reads as a destination rather
+       than another section anchor. */
+    .nav-ig {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--text-muted);
+    }
+    .nav-ig svg { width: 17px; height: 17px; fill: currentColor; }
+    .nav-ig:hover { color: var(--accent); }
+
+    .ig-cta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2rem;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: linear-gradient(135deg, rgba(255,107,53,0.10), rgba(255,107,53,0.02));
+    }
+    .ig-cta h3 { font-size: 1.4rem; font-weight: 700; letter-spacing: -0.01em; }
+    .ig-cta p { color: var(--text-muted); margin-top: 0.35rem; max-width: 46ch; }
+    .ig-cta .cta { flex-shrink: 0; }
+    .ig-handle {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .ig-handle svg { width: 22px; height: 22px; fill: var(--accent); }
+
+    /* Instagram's embed.js swaps each blockquote for an iframe of a fixed
+       min-width (326px). The grid tracks have to be at least that or the
+       iframes overflow their column on narrow screens. */
+    .ig-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(326px, 1fr));
+      gap: 1.25rem;
+      align-items: start;
+    }
+    .ig-grid .instagram-media { margin: 0 auto !important; min-width: 0 !important; }
+    @media (max-width: 400px) {
+      .ig-grid { grid-template-columns: 1fr; }
+    }
+
+    /* What's new band on the landing page. */
+    .whatsnew {
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: var(--surface);
+      padding: 2rem;
+    }
+    .whatsnew .version {
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    .whatsnew h3 { font-size: 1.5rem; font-weight: 700; margin: 0.5rem 0 1.25rem; }
+    .whatsnew dl { display: grid; gap: 1.1rem; }
+    .whatsnew dt { font-weight: 650; margin-bottom: 0.2rem; }
+    .whatsnew dd { color: var(--text-muted); }
+    .whatsnew .minor {
+      margin-top: 1.5rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+    }
+    .whatsnew .minor li { margin-left: 1.1rem; margin-bottom: 0.4rem; }
+
+    /* Anchor resets for elements that only BECAME links when the single page
+       was split into many. `.nav-brand` was a div and the landing cards did not
+       exist, so nothing above stops the browser's default blue underline on
+       them — every other anchor on the site is either `.nav-links a`, `.cta` or
+       `footer a`, all of which already set their own colour. */
+    a.nav-brand,
+    a.feature-card {
+      color: inherit;
+      text-decoration: none;
+    }
+    a.feature-card { display: block; }
+    a.feature-card:hover h3 { color: var(--accent); }
+
+    /* --- Nav on small screens ---------------------------------------------
+       Six labels plus the word "Instagram" do not fit a phone. Kept to ONE
+       scrolling row rather than wrapping to two, because the nav is
+       position:fixed — a taller nav would sit over the content, and every
+       section's top padding would have to be retuned to match it. Scrolling
+       keeps the height constant, so nothing else has to move. */
+    @media (max-width: 760px) {
+      .nav-links {
+        gap: 1.15rem;
+        overflow-x: auto;
+        overscroll-behavior-x: contain;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        /* Room for the fade below, so the last link is not clipped mid-letter. */
+        padding-right: 0.5rem;
+        /* The border-bottom needs vertical room inside a scroller. */
+        padding-bottom: 2px;
+      }
+      .nav-links::-webkit-scrollbar { display: none; }
+      .nav-links a { font-size: 0.82rem; }
+      /* Icon only. The word costs more width than any page link, and the mark
+         is recognisable on its own. */
+      .nav-ig span { display: none; }
+      .nav-ig svg { width: 19px; height: 19px; }
+      /* Hint that the row scrolls, instead of the links just ending at the edge. */
+      nav {
+        -webkit-mask-image: linear-gradient(to right, #000 88%, transparent);
+        mask-image: linear-gradient(to right, #000 88%, transparent);
+      }
+    }
+
+    @media (max-width: 420px) {
+      .nav-brand { font-size: 1.05rem; }
+      .nav-icon { width: 24px; height: 24px; }
+      .nav-links { gap: 0.95rem; }
+    }

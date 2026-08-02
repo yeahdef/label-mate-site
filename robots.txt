@@ -1,0 +1,44 @@
+# https://lblmt.com/robots.txt
+
+# Search and assistant crawlers are welcome on everything. This is a public
+# marketing site with no accounts, no user content and no private areas, so
+# there is nothing here that needs hiding from an indexer.
+User-agent: *
+Allow: /
+
+# macOS drops these into any directory it has been browsed in, and a stray
+# commit would otherwise publish one. Nothing here should ever be indexed.
+Disallow: /.DS_Store
+Disallow: /*.DS_Store$
+
+# Applebot matters more than usual for an iOS app: it feeds Siri, Spotlight
+# and App Store search surfaces. Called out explicitly so a future tightening
+# of the wildcard rule above cannot catch it by accident.
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# Commercial SEO and backlink crawlers. They index nothing a person will ever
+# search, they crawl far more aggressively than the search engines, and the
+# reports they build are sold back to competitors. No value to this site.
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: BLEXBot
+Disallow: /
+
+User-agent: PetalBot
+Disallow: /
+
+Sitemap: https://lblmt.com/sitemap.xml
