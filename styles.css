@@ -674,7 +674,7 @@
 
        Fixed by making the row a flex line with one gap, and by reserving the
        underline's space on EVERY link with a transparent bottom border. Moving
-       between pages now changes only two colours, never a box size. */
+       between pages now changes only two colors, never a box size. */
     .nav-links {
       display: flex;
       align-items: center;
@@ -774,7 +774,7 @@
        was split into many. `.nav-brand` was a div and the landing cards did not
        exist, so nothing above stops the browser's default blue underline on
        them — every other anchor on the site is either `.nav-links a`, `.cta` or
-       `footer a`, all of which already set their own colour. */
+       `footer a`, all of which already set their own color. */
     a.nav-brand,
     a.feature-card {
       color: inherit;
