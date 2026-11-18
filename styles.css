@@ -601,69 +601,6 @@
       font-size: 0.88rem;
     }
 
-    /* Android waitlist */
-    #android .waitlist-card {
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.012));
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 2.5rem 2rem;
-      max-width: 560px;
-      text-align: center;
-      margin: 0 auto;
-    }
-    .waitlist-form {
-      display: flex;
-      gap: 0.6rem;
-      margin-top: 1.5rem;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    .waitlist-form input[type="email"] {
-      flex: 1 1 260px;
-      padding: 0.85rem 1.1rem;
-      border-radius: 12px;
-      border: 1px solid var(--border);
-      background: var(--bg);
-      color: var(--text);
-      font-size: 1rem;
-      outline: none;
-      transition: border-color 0.2s;
-    }
-    .waitlist-form input[type="email"]:focus { border-color: var(--accent); }
-    .waitlist-form button {
-      padding: 0.85rem 1.6rem;
-      border: none;
-      border-radius: 12px;
-      background: linear-gradient(120deg, var(--accent), var(--accent-2));
-      color: #fff;
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .waitlist-form button:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(255, 107, 53, 0.4); }
-    .waitlist-form button:disabled { opacity: 0.6; cursor: default; transform: none; }
-    .waitlist-head {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.75rem;
-      flex-wrap: wrap;
-    }
-    .waitlist-count {
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: var(--accent);
-      background: rgba(255, 107, 53, 0.12);
-      border: 1px solid rgba(255, 107, 53, 0.35);
-      border-radius: 999px;
-      padding: 0.2rem 0.7rem;
-      white-space: nowrap;
-    }
-    .waitlist-status { margin-top: 1rem; font-size: 0.9rem; min-height: 1.4em; }
-    .waitlist-status.ok { color: #6fdc8c; }
-    .waitlist-status.err { color: #ff8a8a; }
-
     /* ---- Multi-page shell (added when the single page was split) ---- */
 
     /* --- Nav layout --------------------------------------------------------
